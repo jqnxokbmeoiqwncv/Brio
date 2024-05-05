@@ -1,5 +1,4 @@
 ﻿using Brio.Core;
-using Brio.Input;
 using ImGuiNET;
 using System.Numerics;
 
@@ -41,14 +40,6 @@ internal static partial class ImBrio
 
         if(max < min)
             step = -step;
-
-        var smallIncrement = InputService.IsKeyBindDown(KeyBindEvents.Interface_IncrementSmallModifier);
-        if(smallIncrement)
-            step /= 10;
-
-        bool largeIncrement = InputService.IsKeyBindDown(KeyBindEvents.Interface_IncrementLargeModifier);
-        if(largeIncrement)
-            step *= 10;
 
         float buttonWidth = ImGui.GetCursorPosX();
         if(ImGui.ArrowButton($"##{label}_decrease", ImGuiDir.Left))

@@ -8,7 +8,6 @@ using Brio.Game.Core;
 using Brio.Game.GPose;
 using Brio.Game.Posing;
 using Brio.Game.World;
-using Brio.Input;
 using Brio.IPC;
 using Brio.Resources;
 using Brio.UI;
@@ -108,7 +107,6 @@ public class Brio : IDalamudPlugin
         serviceCollection.AddSingleton<ResourceProvider>();
         serviceCollection.AddSingleton<GameDataProvider>();
         serviceCollection.AddSingleton<WelcomeService>();
-        serviceCollection.AddSingleton<InputService>();
 
         // IPC
         serviceCollection.AddSingleton<BrioIPCService>();
@@ -152,7 +150,6 @@ public class Brio : IDalamudPlugin
         serviceCollection.AddSingleton<ActorAppearanceWindow>();
         serviceCollection.AddSingleton<ActionTimelineWindow>();
         serviceCollection.AddSingleton<PosingOverlayWindow>();
-        serviceCollection.AddSingleton<KeyBindPromptWindow>();
         serviceCollection.AddSingleton<PosingOverlayToolbarWindow>();
         serviceCollection.AddSingleton<PosingTransformWindow>();
         serviceCollection.AddSingleton<CameraWindow>();

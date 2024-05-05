@@ -5,7 +5,6 @@ using Brio.Entities.Actor;
 using Brio.Entities.Core;
 using Brio.Files;
 using Brio.Game.Posing;
-using Brio.Input;
 using Brio.Resources;
 using Brio.UI.Widgets.Posing;
 using Brio.UI.Windows.Specialized;
@@ -59,15 +58,13 @@ internal class PosingCapability : ActorCharacterCapability
     private readonly PosingService _posingService;
     private readonly ConfigurationService _configurationService;
     private readonly IFramework _framework;
-    private readonly InputService _input;
 
     public PosingCapability(
         ActorEntity parent,
         PosingOverlayWindow window,
         PosingService posingService,
         ConfigurationService configurationService,
-        IFramework framework,
-        InputService input)
+        IFramework framework)
         : base(parent)
     {
         Widget = new PosingWidget(this);
@@ -75,25 +72,16 @@ internal class PosingCapability : ActorCharacterCapability
         _posingService = posingService;
         _configurationService = configurationService;
         _framework = framework;
-        _input = input;
     }
 
     public override void OnEntitySelected()
     {
         base.OnEntitySelected();
-
-        _input.AddListener(KeyBindEvents.Posing_ToggleOverlay, ToggleOverlay);
-        _input.AddListener(KeyBindEvents.Posing_Undo, Undo);
-        _input.AddListener(KeyBindEvents.Posing_Redo, Redo);
     }
 
     public override void OnEntityDeselected()
     {
         base.OnEntityDeselected();
-
-        _input.RemoveListener(KeyBindEvents.Posing_ToggleOverlay, ToggleOverlay);
-        _input.RemoveListener(KeyBindEvents.Posing_Undo, Undo);
-        _input.RemoveListener(KeyBindEvents.Posing_Redo, Redo);
     }
 
     public void ClearSelection() => Selected = PosingSelectionType.None;

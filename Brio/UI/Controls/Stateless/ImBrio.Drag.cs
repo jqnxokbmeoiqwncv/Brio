@@ -1,5 +1,4 @@
-﻿using Brio.Input;
-using Brio.UI.Controls.Core;
+﻿using Brio.UI.Controls.Core;
 using Dalamud.Interface;
 using ImGuiNET;
 using System.Collections.Generic;
@@ -102,12 +101,6 @@ internal static partial class ImBrio
         bool changed = false;
         bool active = false;
 
-        if(InputService.IsKeyBindDown(KeyBindEvents.Interface_IncrementSmallModifier))
-            step /= 10;
-
-        if(InputService.IsKeyBindDown(KeyBindEvents.Interface_IncrementLargeModifier))
-            step *= 10;
-
         if(size.X <= 0)
             size.X = ImBrio.GetRemainingWidth();
 
@@ -144,12 +137,6 @@ internal static partial class ImBrio
     {
         bool changed = false;
         bool active = false;
-
-        if(InputService.IsKeyBindDown(KeyBindEvents.Interface_IncrementSmallModifier))
-            step /= 10;
-
-        if(InputService.IsKeyBindDown(KeyBindEvents.Interface_IncrementLargeModifier))
-            step *= 10;
 
         float buttonWidth = 32;
         ImGui.SetNextItemWidth(buttonWidth);

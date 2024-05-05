@@ -1,8 +1,5 @@
 using Brio.Config;
-using Brio.Input;
 using Brio.IPC;
-using Brio.Resources;
-using Brio.UI.Controls.Editors;
 using Brio.UI.Controls.Stateless;
 using Brio.Web;
 using Dalamud.Interface;
@@ -71,8 +68,6 @@ internal class SettingsWindow : Window
         {
             if(_isModal)
             {
-                DrawLibrarySection();
-
                 if(ImBrio.Button("Close", FontAwesomeIcon.Times, new Vector2(100, 0)))
                 {
                     IsOpen = false;
@@ -88,7 +83,6 @@ internal class SettingsWindow : Window
                         DrawGeneralTab();
                         DrawIPCTab();
                         DrawPosingTab();
-                        DrawKeysTab();
                         DrawAdvancedTab();
                     }
                 }
@@ -541,89 +535,5 @@ internal class SettingsWindow : Window
                 _configurationService.ApplyChange();
             }
         }
-    }
-
-    private void DrawLibraryTab()
-    {
-        using(var tab = ImRaii.TabItem("Library"))
-        {
-            if(tab.Success)
-            {
-                DrawLibrarySection();
-            }
-        }
-    }
-
-    private void DrawLibrarySection()
-    {
-        //
-        //// KENTODO FIX
-        //
-
-    }
-
-    private void DrawKeysTab()
-    {
-        using(var tab = ImRaii.TabItem("Key Binds"))
-        {
-            if(!tab.Success)
-                return;
-
-            bool enableKeybinds = _configurationService.Configuration.Input.EnableKeybinds;
-            if(ImGui.Checkbox("Enable keyboard shortcuts", ref enableKeybinds))
-            {
-                _configurationService.Configuration.Input.EnableKeybinds = enableKeybinds;
-                _configurationService.ApplyChange();
-            }
-
-            if(enableKeybinds == false)
-            {
-                ImGui.BeginDisabled();
-            }
-
-            bool showPrompts = _configurationService.Configuration.Input.ShowPromptsInGPose;
-            if(ImGui.Checkbox("Show prompts in GPose", ref showPrompts))
-            {
-                _configurationService.Configuration.Input.ShowPromptsInGPose = showPrompts;
-                _configurationService.ApplyChange();
-            }
-
-            if(ImGui.CollapsingHeader("Interface", ImGuiTreeNodeFlags.DefaultOpen))
-            {
-                DrawKeyBind(KeyBindEvents.Interface_ToggleBrioWindow);
-                DrawKeyBind(KeyBindEvents.Interface_IncrementSmallModifier);
-                DrawKeyBind(KeyBindEvents.Interface_IncrementLargeModifier);
-            }
-
-            if(ImGui.CollapsingHeader("Posing", ImGuiTreeNodeFlags.DefaultOpen))
-            {
-                DrawKeyBind(KeyBindEvents.Posing_DisableGizmo);
-                DrawKeyBind(KeyBindEvents.Posing_DisableSkeleton);
-                DrawKeyBind(KeyBindEvents.Posing_HideOverlay);
-                DrawKeyBind(KeyBindEvents.Posing_ToggleOverlay);
-                DrawKeyBind(KeyBindEvents.Posing_Undo);
-                DrawKeyBind(KeyBindEvents.Posing_Redo);
-                DrawKeyBind(KeyBindEvents.Posing_Translate);
-                DrawKeyBind(KeyBindEvents.Posing_Rotate);
-                DrawKeyBind(KeyBindEvents.Posing_Scale);
-            }
-
-            if(enableKeybinds == false)
-            {
-                ImGui.EndDisabled();
-            }
-
-        }
-    }
-
-    private void DrawKeyBind(KeyBindEvents evt)
-    {
-        string evtText = Localize.Get($"keys.{evt}") ?? evt.ToString();
-
-        if(KeybindEditor.KeySelector(evtText, evt, _configurationService.Configuration.Input))
-        {
-            _configurationService.ApplyChange();
-        }
-
     }
 }

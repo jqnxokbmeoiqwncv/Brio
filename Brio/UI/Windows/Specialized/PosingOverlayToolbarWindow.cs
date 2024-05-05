@@ -2,7 +2,6 @@
 using Brio.Config;
 using Brio.Entities;
 using Brio.Game.Posing;
-using Brio.Input;
 using Brio.UI.Controls.Core;
 using Brio.UI.Controls.Editors;
 using Brio.UI.Controls.Stateless;
@@ -144,7 +143,7 @@ internal class PosingOverlayToolbarWindow : Window
         {
             using(ImRaii.PushFont(UiBuilder.IconFont))
             {
-                if(ImGui.Button($"{FontAwesomeIcon.ArrowsUpDownLeftRight.ToIconString()}###select_position", new Vector2(buttonSize)) || InputService.IsKeyBindDown(KeyBindEvents.Posing_Translate))
+                if(ImGui.Button($"{FontAwesomeIcon.ArrowsUpDownLeftRight.ToIconString()}###select_position", new Vector2(buttonSize)))
                     _posingService.Operation = PosingOperation.Translate;
             }
         }
@@ -158,7 +157,7 @@ internal class PosingOverlayToolbarWindow : Window
         {
             using(ImRaii.PushFont(UiBuilder.IconFont))
             {
-                if(ImGui.Button($"{FontAwesomeIcon.ArrowsSpin.ToIconString()}###select_rotate", new Vector2(buttonSize)) || InputService.IsKeyBindDown(KeyBindEvents.Posing_Rotate))
+                if(ImGui.Button($"{FontAwesomeIcon.ArrowsSpin.ToIconString()}###select_rotate", new Vector2(buttonSize)))
                     _posingService.Operation = PosingOperation.Rotate;
             }
         }
@@ -172,7 +171,7 @@ internal class PosingOverlayToolbarWindow : Window
         {
             using(ImRaii.PushFont(UiBuilder.IconFont))
             {
-                if(ImGui.Button($"{FontAwesomeIcon.ExpandAlt.ToIconString()}###select_scale", new Vector2(buttonSize)) || InputService.IsKeyBindDown(KeyBindEvents.Posing_Scale))
+                if(ImGui.Button($"{FontAwesomeIcon.ExpandAlt.ToIconString()}###select_scale", new Vector2(buttonSize)))
                     _posingService.Operation = PosingOperation.Scale;
             }
         }

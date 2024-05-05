@@ -18,7 +18,15 @@ internal class ConfigurationService : IDisposable
     {
         Instance = this;
         _pluginInterface = pluginInterface;
-        Configuration = _pluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
+        try
+        {
+            Configuration = _pluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
+        }
+        catch(Exception)
+        {
+            Configuration = new Configuration();
+            Save();
+        }
     }
 
     public void Save()
