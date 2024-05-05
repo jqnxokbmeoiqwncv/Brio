@@ -1,6 +1,7 @@
-﻿using Brio.Core;
+﻿using Brio.Files.Converters;
 using Dalamud.Interface.Internal;
 using Dalamud.Plugin;
+using Swan.Formatters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,10 +21,23 @@ internal class ResourceProvider : IDisposable
 
     private readonly DalamudPluginInterface _pluginInterface;
 
+    readonly JsonSerializerOptions _serializeOptions = new();
+
     public ResourceProvider(DalamudPluginInterface pluginInterface)
     {
         Instance = this;
         _pluginInterface = pluginInterface;
+
+        _serializeOptions = new()
+        {
+            WriteIndented = true
+        };
+
+        _serializeOptions.Converters.Add(new JsonStringEnumConverter());
+        _serializeOptions.Converters.Add(new Vector2Converter());
+        _serializeOptions.Converters.Add(new Vector3Converter());
+        _serializeOptions.Converters.Add(new Vector4Converter());
+        _serializeOptions.Converters.Add(new QuaternionConverter());
 
         Localize.Load(this);
     }
