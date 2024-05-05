@@ -42,18 +42,18 @@ internal class FileUIHelpers
 
     public static void ShowImportCharacterModal(ActorAppearanceCapability capability, AppearanceImportOptions options)
     {
-        UIManager.Instance.FileDialogManager.OpenFileDialog("Import MCDF File###import_character_window", "Mare Character Data File (*.mcdf){.mcdf}",
+        UIManager.Instance.FileDialogManager.OpenFileDialog("Import Character File###import_character_window", "Character File (*.chara){.chara}",
                  (success, paths) =>
                  {
                      if(success && paths.Count == 1)
                      {
                          var path = paths[0];
                          var directory = Path.GetDirectoryName(path);
-                         ConfigurationService.Instance.Configuration.Paths.LastMcdfPath = directory;
+                         ConfigurationService.Instance.Configuration.Paths.LastCharacterPath = directory;
 
-                         capability.LoadMcdf(path);
+                         capability.ImportAppearance(path, options);
                      }
-                 }, 1, ConfigurationService.Instance.Configuration.Paths.LastMcdfPath, true);
+                 }, 1, ConfigurationService.Instance.Configuration.Paths.LastCharacterPath, true);
     }
 
     public static void ShowExportCharacterModal(ActorAppearanceCapability capability)
