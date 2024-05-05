@@ -5,6 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Xml.Linq;
 
 namespace Brio.Resources;
 
@@ -33,7 +36,7 @@ internal class ResourceProvider : IDisposable
         using var stream = GetRawResourceStream(name);
         using var reader = new StreamReader(stream);
         var txt = reader.ReadToEnd();
-        var document = JsonSerializer.Deserialize<T>(txt);
+        var document = JsonSerializer.Deserialize<T>(txt, _serializeOptions) ?? throw new Exception($"Failed to deserialize {name}.");
         _cachedDocuments[name] = document!;
         return document;
     }
@@ -71,7 +74,7 @@ internal class ResourceProvider : IDisposable
         using var stream = GetFileStream(path);
         using var reader = new StreamReader(stream);
         var txt = reader.ReadToEnd();
-        var document = JsonSerializer.Deserialize<T>(txt);
+        var document = JsonSerializer.Deserialize<T>(txt, _serializeOptions) ?? throw new Exception($"Failed to deserialize Path: {path}.");
         return document;
     }
 
@@ -80,7 +83,7 @@ internal class ResourceProvider : IDisposable
         using var stream = GetFileStream(path);
         using var reader = new StreamReader(stream);
         var txt = reader.ReadToEnd();
-        var document = JsonSerializer.Deserialize(txt, type);
+        var document = JsonSerializer.Deserialize(txt, type, _serializeOptions) ?? throw new Exception($"Failed to deserialize Path: {path}.");
         return document;
     }
 

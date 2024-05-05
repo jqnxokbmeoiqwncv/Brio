@@ -9,14 +9,12 @@ using System.Numerics;
 namespace Brio.UI.Controls.Stateless;
 internal static partial class ImBrio
 {
-    public static void FontIcon(FontAwesomeIcon icon, float scale = 1.0f)
+    public static void FontIcon(FontAwesomeIcon icon)
     {
-        ImGui.SetWindowFontScale(scale);
         using(ImRaii.PushFont(UiBuilder.IconFont))
         {
             ImGui.Text(icon.ToIconString());
         }
-        ImGui.SetWindowFontScale(1.0f);
     }
 
     public static bool FontIconButton(FontAwesomeIcon icon)
@@ -123,12 +121,12 @@ internal static partial class ImBrio
         return wasClicked;
     }
 
-    public static bool Button(string label, FontAwesomeIcon icon, float iconScale = 1.0f)
+    public static bool Button(string label, FontAwesomeIcon icon)
     {
-        return Button(label, icon, Vector2.Zero, iconScale);
+        return Button(label, icon, Vector2.Zero);
     }
 
-    public static bool Button(string label, FontAwesomeIcon icon, Vector2 size, float iconScale = 1.0f, string hoverText = "")
+    public static bool Button(string label, FontAwesomeIcon icon, Vector2 size, string hoverText = "")
     {
         bool clicked = false;
 
@@ -164,12 +162,10 @@ internal static partial class ImBrio
         }
 
         ImGui.SetCursorPos(startPos + ImGui.GetStyle().FramePadding);
-        ImGui.SetWindowFontScale(iconScale);
         using(ImRaii.PushFont(UiBuilder.IconFont))
         {
             ImGui.Text(icon.ToIconString());
         }
-        ImGui.SetWindowFontScale(1.0f);
 
         ImGui.SetCursorPos(startPos);
         ImGui.InvisibleButton("##dummy", size);
@@ -196,6 +192,11 @@ internal static partial class ImBrio
 
     public static bool BorderedGameIcon(string id, IDalamudTextureWrap texture, string? description = null, ImGuiButtonFlags flags = ImGuiButtonFlags.MouseButtonLeft, Vector2? size = null)
     {
+        if(texture is null)
+        {
+            return false;
+        }
+
         using(ImRaii.PushId(id))
         {
             bool result = false;
