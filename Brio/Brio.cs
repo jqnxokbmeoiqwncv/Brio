@@ -24,7 +24,7 @@ namespace Brio;
 
 public class Brio : IDalamudPlugin
 {
-    public const string Name = "Brio Crash Test";
+    public const string Name = "Brio CrashTest3";
 
     private ServiceProvider? _services = null;
 

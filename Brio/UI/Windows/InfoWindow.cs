@@ -30,7 +30,7 @@ internal class InfoWindow : Window
             {
                 var text = $"""
                    
-                    Welcome to the Brio Crash Test, 2.3.3!
+                    Welcome to the Brio Crash Test, 2.3.4!
 
                     While Testing, use Brio as you normally would,
 
