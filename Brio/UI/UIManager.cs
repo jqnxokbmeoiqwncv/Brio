@@ -180,7 +180,7 @@ internal class UIManager : IDisposable
 
     private void ApplySettings()
     {
-        BrioStyle.EnableStyle = _configurationService.Configuration.Appearance.EnableBrioStyle;
+        //BrioStyle.EnableStyle = _configurationService.Configuration.Appearance.EnableBrioStyle;
 
         _pluginInterface.UiBuilder.DisableGposeUiHide = _configurationService.Configuration.Interface.ShowInGPose;
         _pluginInterface.UiBuilder.DisableAutomaticUiHide = _configurationService.Configuration.Interface.ShowWhenUIHidden;

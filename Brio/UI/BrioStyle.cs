@@ -4,7 +4,7 @@ using System.Numerics;
 namespace Brio.UI;
 internal static class BrioStyle
 {
-    public static bool EnableStyle { get; set; }
+    public static bool EnableStyle { get; } = false;
 
     public static void PushStyle()
     {
