@@ -1,23 +1,28 @@
 
 To open this window again click `Infomation` on the Scene Manager then -> `View the Changelog`
 --------------------------------------------------------------------------------
-	 ---> Brio, Version 0.3.1.4 <--- 
+	 ---> Brio, Version 0.3.1.6 <--- 
 --------------------------------------------------------------------------------
 
-Added support for the new Penumbra & Glamourer API
-Fixed transform sliders not being adjusted by mousewheel (Thanks @gris-fuego!)
-Fixed a crash by removing the Expanded Mode from the transform editor
+- Readded the "Load NPC Appearance" button to the Appearance Widget
+- Penumbra Collections are now sorted alphabetically 
+- Made a small optimization when drawing the Penumbra collection ComboBox
+- Made minor UI improvements
 
 --------------------------------------------------------------------------------
-	 ---> Brio, Version 0.3.1.1 <--- 
+	 --- Brio, Version 0.3.1.1 -> Version 0.3.1.5 --- 
 --------------------------------------------------------------------------------
+
+- Added support for the new Penumbra & Glamourer API
+- Fixed transform sliders not being adjusted by mousewheel (Thanks @gris-fuego!)
+- Fixed a crash by removing the Expanded Mode from the transform editor
 
 - Fixed an issue where when loading certain poses some Transform values would be NAN
 - Fix an issue where the Welcome screen would always display for new users
 - Fixed a rare crash with the key-bind overlay open.
 
 --------------------------------------------------------------------------------
-	 ---> Brio, Version 0.3.1 <--- 
+	 --- Brio, Version 0.3.1.0 --- 
 --------------------------------------------------------------------------------
 
 - [New Feature!] Added Actor renaming!
@@ -47,8 +52,6 @@ Fixed a crash by removing the Expanded Mode from the transform editor
 
 - Added new IPC `Brio.SpawnActorWithoutCompanion`.
 
---- Fixed issues ---
-
 - Fixed an issue when importing pose files with certain clothing on.
 
 - Fixed an issue where keyboard shortcuts would not work.
@@ -58,8 +61,6 @@ Fixed a crash by removing the Expanded Mode from the transform editor
 - Fix an issue where the Posing Overlay would not display fully if the text scale was less then 100%.
 
 - Fixed a bug in the Library where it would rescan every time that a setting was changed.
-
-- Fixed a rare crash with the Library.
 
 --------------------------------------------------------------------------------
 
