@@ -10,7 +10,7 @@
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-		<Version>0.0.0.1</Version>
+		<Version>0.4.3.0</Version>
 	</PropertyGroup>
 
 	<PropertyGroup>
